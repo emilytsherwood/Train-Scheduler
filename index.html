@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 </head>
 <body>
    <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
@@ -54,7 +54,7 @@
 
       <div class="row">
 		
-        <!-- Add Employee-->
+        <!-- Add Train-->
         <div class="col-lg-12">
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -62,27 +62,27 @@
             </div>
             <div class="panel-body">
 
-              <!-- Add Employee Section-->
+              <!-- Add Train Inputs-->
 
-              <form role="form">
+              <form role="form" id="train-form">
                 <div class="form-group">
                   <label for="name-input">Train Name:</label>
                   <input class="form-control" id="name-input" type="text">
                 </div>
                 <div class="form-group">
                   <label for="email-input">Destination:</label>
-                  <input class="form-control" id="role-input" type="text">
+                  <input class="form-control" id="destination-input" type="text">
                 </div>
                 <div class="form-group">
                 <!-- Specify type of train time -->
                   <label for="age-input">First Train Time:</label> 
-                  <input class="form-control" id="start-input" type="date">
+                  <input class="form-control" id="first-input" type="date">
                 </div>
                <div class="form-group">
                   <label for="age-input">Frequency (minutes):</label>
-                  <input class="form-control" id="month-input" type="number">
+                  <input class="form-control" id="frequency-input" type="number">
                 </div>
-                <button class="btn btn-default" id="add-user" type="submit">Submit</button>
+                <button class="btn btn-default" id="add-train" type="submit">Submit</button>
               </form>
 
             </div>
@@ -90,7 +90,7 @@
           </div>
 
         </div>
-<script type="text/javascript" src="employeemanagement.js"></script>
+<script type="text/javascript" src="assets/javascript/app.js"></script>
        
 </body>
 </html>
