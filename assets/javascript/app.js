@@ -17,7 +17,7 @@ $(document).ready(function() {
   var trainDestination = '';
   var trainFrequency = '';
   var trainNext = '';
-  // var trainMin = '';
+  var trainMin = '';
 
   $('#train-form').on('submit', function(){
   	trainName = $('#name-input').val().trim();
@@ -31,12 +31,22 @@ $(document).ready(function() {
   		trainDestination: trainDestination,
   		trainFrequency: trainFrequency,
   		trainNext: trainNext,
+  		trainMin: trainMin,
   	});
-
-  	return false;
+  	 return false;
   });
  
-
-  //Append the DOM
+  	database.ref().on('value', function(snapshot){
+	$('.train-stuff').append('<tr class="train-row">' + '<td class="train-name">'+ snapshot.val().trainName + '</td>' + '<td class="train-destination">' + snapshot.val().trainDestination + '</td>' + '<td class="train-frequency">' + snapshot.val().trainFrequency + '</td>' + '<td class="train-next">' + snapshot.val().trainNext + '</td>' + '<td class="train-minaway">' + snapshot.val().trainMin + '</td>' + '</tr>'
+ 	);
 
 });
+
+});
+	
+ 
+
+//   //Append the DOM
+ 	
+
+ 			
