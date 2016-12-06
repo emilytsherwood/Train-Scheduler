@@ -21,10 +21,14 @@ $(document).ready(function() {
 
   $('#train-form').on('submit', function(){
   	trainName = $('#name-input').val().trim();
-  	console.log(trainName);
   	trainDestination = $('#destination-input').val().trim();
   	trainFrequency = $('#first-input').val().trim();
   	trainNext = $('#frequency-input').val().trim();
+
+  	console.log(trainName);
+  	console.log(trainDestination);
+  	console.log(trainFrequency);
+  	console.log(trainNext);
 
   	database.ref().push({
   		trainName: trainName,
@@ -37,7 +41,12 @@ $(document).ready(function() {
   });
  
   	database.ref().on('value', function(snapshot){
-	$('.train-stuff').append('<tr class="train-row">' + '<td class="train-name">'+ snapshot.val().trainName + '</td>' + '<td class="train-destination">' + snapshot.val().trainDestination + '</td>' + '<td class="train-frequency">' + snapshot.val().trainFrequency + '</td>' + '<td class="train-next">' + snapshot.val().trainNext + '</td>' + '<td class="train-minaway">' + snapshot.val().trainMin + '</td>' + '</tr>'
+	$('.train-stuff').append('<tr class="train-row">' + 
+		'<td class="train-name">'+ snapshot.val().trainName + '</td>' + 
+		'<td class="train-destination">' + snapshot.val().trainDestination + '</td>' + 
+		'<td class="train-frequency">' + snapshot.val().trainFrequency + '</td>' + 
+		'<td class="train-next">' + snapshot.val().trainNext + '</td>' + 
+		'<td class="train-minaway">' + snapshot.val().trainMin + '</td>' + '</tr>'
  	);
 
 });
