@@ -17,7 +17,7 @@ $(document).ready(function() {
   var trainDestination = '';
   var trainFrequency = '';
   var trainNext = '';
-  var trainMin = '';
+  // var trainMin = '';
 
   $('#train-form').on('submit', function(){
   	trainName = $('#name-input').val().trim();
@@ -31,9 +31,12 @@ $(document).ready(function() {
   		trainDestination: trainDestination,
   		trainFrequency: trainFrequency,
   		trainNext: trainNext,
-  		trainMin: trainMin,
   	});
+
+  	return false;
   });
-  return false;
+ 
+
+  //Append the DOM
 
 });
