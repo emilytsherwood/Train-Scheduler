@@ -19,6 +19,7 @@ $(document).ready(function() {
   var trainNext = '';
   var trainMin = '';
 
+  //Input form categories
   $('#train-form').on('submit', function(){
   	trainName = $('#name-input').val().trim();
   	trainDestination = $('#destination-input').val().trim();
@@ -50,6 +51,10 @@ $(document).ready(function() {
 	//Minutes away
 	var minutesTrain = trainFrequency - timeRemainder;
 		console.log("Minutes Until Train: " + minutesTrain);
+
+	//Next train
+	var nextTrain = moment().add(minutesTrain, "minutes");
+		console.log("Arrival Time: " + moment(nextTrain).format("HH:mm"));
 
   	database.ref().push({
   		trainName: trainName,
