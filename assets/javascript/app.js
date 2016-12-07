@@ -32,12 +32,24 @@ $(document).ready(function() {
 
   	//Time calculations
   	//Converting the time into military time on submit handler
-  	var trainFirstConverted = moment(trainFirst, "hh:mm").subtract(1, "years");
-		console.log(moment(trainFirstConverted).format("hh:mm"));
+  	var trainFirstConverted = moment(trainFirst, "HH:mm").subtract(1, "years");
+		console.log(moment(trainFirstConverted).format("HH:mm"));
 
 	//Current time
 	var currentTime = moment();
-		console.log("Current Time: " + moment(currentTime).format("hh:mm"));
+		console.log("Current Time: " + moment(currentTime).format("HH:mm"));
+
+	//Difference between First train and current time
+	var differenceTime = moment().diff(moment(trainFirstConverted), "minutes");
+		console.log("Difference in Time: " + differenceTime);
+
+	//Time apart (remainder) - (WHY DO WE NEED TO DO THIS?)
+	var timeRemainder = differenceTime % trainFrequency;
+		console.log(timeRemainder);
+
+	//Minutes away
+	var minutesTrain = trainFrequency - timeRemainder;
+		console.log("Minutes Until Train: " + minutesTrain);
 
   	database.ref().push({
   		trainName: trainName,
