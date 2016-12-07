@@ -23,15 +23,21 @@ $(document).ready(function() {
   	trainName = $('#name-input').val().trim();
   	trainDestination = $('#destination-input').val().trim();
   	trainFirst = $('#first-input').val().trim();
-  	//Converting the time into military time on submit handler
-  	var trainFirstConverted = moment(trainFirst, "hh:mm").subtract(1, "years");
-		console.log(moment(trainFirstConverted).format("hh:mm"));
   	trainFrequency = $('#frequency-input').val().trim();
 
   	console.log(trainName);
   	console.log(trainDestination);
   	console.log(trainFirst);
   	console.log(trainFrequency);
+
+  	//Time calculations
+  	//Converting the time into military time on submit handler
+  	var trainFirstConverted = moment(trainFirst, "hh:mm").subtract(1, "years");
+		console.log(moment(trainFirstConverted).format("hh:mm"));
+
+	//Current time
+	var currentTime = moment();
+		console.log("Current Time: " + moment(currentTime).format("hh:mm"));
 
   	database.ref().push({
   		trainName: trainName,
