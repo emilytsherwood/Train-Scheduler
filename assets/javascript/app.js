@@ -15,26 +15,29 @@ $(document).ready(function() {
   //Creating variables
   var trainName = '';
   var trainDestination = '';
-  var trainFrequency = '';
+  var trainFirst = '';
   var trainNext = '';
   var trainMin = '';
 
   $('#train-form').on('submit', function(){
   	trainName = $('#name-input').val().trim();
   	trainDestination = $('#destination-input').val().trim();
-  	trainFrequency = $('#first-input').val().trim();
-  	trainNext = $('#frequency-input').val().trim();
+  	trainFirst = $('#first-input').val().trim();
+  	//Converting the time into military time on submit handler
+  	var trainFirstConverted = moment(trainFirst, "hh:mm").subtract(1, "years");
+		console.log(moment(trainFirstConverted).format("hh:mm"));
+  	trainFrequency = $('#frequency-input').val().trim();
 
   	console.log(trainName);
   	console.log(trainDestination);
+  	console.log(trainFirst);
   	console.log(trainFrequency);
-  	console.log(trainNext);
 
   	database.ref().push({
   		trainName: trainName,
   		trainDestination: trainDestination,
+  		trainFirst: trainFirst,
   		trainFrequency: trainFrequency,
-  		trainNext: trainNext,
   		trainMin: trainMin,
   	});
   	 return false;
@@ -51,11 +54,10 @@ $(document).ready(function() {
 
 });
 
-});
+
 	
- 
 
-//   //Append the DOM
- 	
 
+
+});
  			
