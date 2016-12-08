@@ -65,7 +65,7 @@ $(document).ready(function() {
             // nextTrain: nextTrain,
             // minutesTrain: minutesTrain,
         });
-        database.ref().on('child_added', function(snapshot) {
+        database.ref().limitToLast(1).once('child_added', function(snapshot) {
             var trains = snapshot.val();
             printTrain(trains);
             console.log(snapshot.val());
