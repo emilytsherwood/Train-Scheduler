@@ -1,1 +1,21 @@
-style.css
+body {
+	background-image: url(../images/freight-train.jpg);
+
+}
+
+.jumbotron-font {
+	font-family: 'Exo 2', sans-serif;
+}
+
+.panel-heading {
+	font-family: 'Exo 2', sans-serif;
+}
+
+label {
+	font-family: 'Exo 2', sans-serif;
+}
+
+th {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 700;
+}
