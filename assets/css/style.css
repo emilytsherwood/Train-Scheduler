@@ -9,6 +9,11 @@ body {
 
 .panel-heading {
 	font-family: 'Exo 2', sans-serif;
+	font-size: 20px;
+}
+
+.panel-heading .panel-title {
+	font-size: 20px;
 }
 
 label {
@@ -18,4 +23,12 @@ label {
 th {
 	font-family: 'Exo 2', sans-serif;
 	font-weight: 700;
+}
+
+td {
+	font-family: 'Exo 2', sans-serif;
+}
+
+.btn-style {
+	font-family: 'Exo 2', sans-serif;
 }
