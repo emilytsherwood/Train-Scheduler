@@ -33,54 +33,62 @@ $(document).ready(function() {
 
         //Time calculations
         //Converting the time into military time on submit handler
-        var trainFirstConverted = moment(trainFirst, "HH:mm").subtract(1, "years");
-        console.log(moment(trainFirstConverted).format("HH:mm"));
+        // var trainFirstConverted = moment(trainFirst, "HH:mm").subtract(1, "years");
+        // console.log(moment(trainFirstConverted).format("HH:mm"));
 
-        //Current time
-        var currentTime = moment();
-        console.log("Current Time: " + moment(currentTime).format("HH:mm"));
+        // //Current time
+        // var currentTime = moment();
+        // console.log("Current Time: " + moment(currentTime).format("HH:mm"));
 
-        //Difference between First train and current time
-        var differenceTime = moment().diff(moment(trainFirstConverted), "minutes");
-        console.log("Difference in Time: " + differenceTime);
+        // //Difference between First train and current time
+        // var differenceTime = moment().diff(moment(trainFirstConverted), "minutes");
+        // console.log("Difference in Time: " + differenceTime);
 
-        //Time apart (remainder)
-        var timeRemainder = differenceTime % trainFrequency;
-        console.log(timeRemainder);
+        // //Time apart (remainder)
+        // var timeRemainder = differenceTime % trainFrequency;
+        // console.log(timeRemainder);
 
-        //Minutes away
-        var minutesTrain = trainFrequency - timeRemainder;
-        console.log("Minutes Until Train: " + minutesTrain);
+        // //Minutes away
+        // var minutesTrain = trainFrequency - timeRemainder;
+        // console.log("Minutes Until Train: " + minutesTrain);
 
-        //Next train
-        var nextTrain = moment().add(minutesTrain, "minutes");
-        var nextTrainConverted = moment(nextTrain.format("HH:mm"));
-        console.log("Arrival Time: " + moment(nextTrain).format("HH:mm"));
 
         database.ref().push({
             trainName: trainName,
             trainDestination: trainDestination,
             trainFirst: trainFirst,
             trainFrequency: trainFrequency,
-            // nextTrainConverted: nextTrainConverted,
-            minutesTrain: minutesTrain,
         });
-        database.ref().limitToLast(1).once('child_added', function(snapshot) {
+   
+        return false;
+    });
+
+database.ref().on('child_added', function(snapshot) {
             var trains = snapshot.val();
             printTrain(trains); //Calling the function that creates the table data and rows
             console.log(snapshot.val());
         });
-        return false;
-    });
-
 
     function printTrain(trainObj) {
+    	var trainFirstConverted = moment(trainObj.trainFirst, "HH:mm").subtract(1, "years");
+        console.log(moment(trainFirstConverted).format("HH:mm"));
+        var currentTime = moment();
+        console.log("Current Time: " + moment(currentTime).format("HH:mm"));
+    	var differenceTime = moment().diff(moment(trainFirstConverted), "minutes");
+        console.log("Difference in Time: " + differenceTime);
+    	var timeRemainder = differenceTime % trainObj.trainFrequency;
+        console.log(timeRemainder);
+  		var minutesTrain = trainObj.trainFrequency - timeRemainder;
+        console.log("Minutes Until Train: " + minutesTrain);
+        var nextTrain = moment().add(minutesTrain, "minutes");
+        var nextTrainConverted = moment(nextTrain).format("HH:mm");
+        console.log("Arrival Time: " + moment(nextTrain).format("HH:mm"));
         $('.train-stuff').append('<tr class="train-row">' +
             '<td class="train-name">' + trainObj.trainName + '</td>' +
             '<td class="train-destination">' + trainObj.trainDestination + '</td>' +
             '<td class="train-frequency">' + trainObj.trainFrequency + '</td>' +
-            '<td class="train-next">' + trainObj.nextTrain + '</td>' +
-            '<td class="train-minaway">' + trainObj.minutesTrain + '</td>' + '</tr>');
+            '<td class="train-next">' + nextTrainConverted + '</td>' +
+            '<td class="train-minaway">' + minutesTrain + '</td>' + '</tr>');
     }
 
 });
