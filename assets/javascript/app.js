@@ -44,7 +44,7 @@ $(document).ready(function() {
         var differenceTime = moment().diff(moment(trainFirstConverted), "minutes");
         console.log("Difference in Time: " + differenceTime);
 
-        //Time apart (remainder) - (WHY DO WE NEED TO DO THIS?)
+        //Time apart (remainder)
         var timeRemainder = differenceTime % trainFrequency;
         console.log(timeRemainder);
 
@@ -67,7 +67,7 @@ $(document).ready(function() {
         });
         database.ref().limitToLast(1).once('child_added', function(snapshot) {
             var trains = snapshot.val();
-            printTrain(trains);
+            printTrain(trains); //Calling the function that creates the table data and rows
             console.log(snapshot.val());
         });
         return false;
