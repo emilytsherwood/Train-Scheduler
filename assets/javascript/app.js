@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    // Initialize Firebase
+    //Initialize Firebase
     var config = {
         apiKey: "AIzaSyC8_Nk2_tkeGXYk64BBAlEVvMJc4SM4_Uo",
         authDomain: "train-schedule-67423.firebaseapp.com",
@@ -31,54 +31,38 @@ $(document).ready(function() {
         console.log(trainFirst);
         console.log(trainFrequency);
 
-        //Time calculations
-        //Converting the time into military time on submit handler
-        // var trainFirstConverted = moment(trainFirst, "HH:mm").subtract(1, "years");
-        // console.log(moment(trainFirstConverted).format("HH:mm"));
-
-        // //Current time
-        // var currentTime = moment();
-        // console.log("Current Time: " + moment(currentTime).format("HH:mm"));
-
-        // //Difference between First train and current time
-        // var differenceTime = moment().diff(moment(trainFirstConverted), "minutes");
-        // console.log("Difference in Time: " + differenceTime);
-
-        // //Time apart (remainder)
-        // var timeRemainder = differenceTime % trainFrequency;
-        // console.log(timeRemainder);
-
-        // //Minutes away
-        // var minutesTrain = trainFrequency - timeRemainder;
-        // console.log("Minutes Until Train: " + minutesTrain);
-
-
         database.ref().push({
             trainName: trainName,
             trainDestination: trainDestination,
             trainFirst: trainFirst,
             trainFrequency: trainFrequency,
         });
-   
+
         return false;
     });
 
-database.ref().on('child_added', function(snapshot) {
-            var trains = snapshot.val();
-            printTrain(trains); //Calling the function that creates the table data and rows
-            console.log(snapshot.val());
-        });
+    database.ref().on('child_added', function(snapshot) {
+        var trains = snapshot.val();
+        printTrain(trains); //Calling the function that creates the table data and rows
+        console.log(snapshot.val());
+    });
 
     function printTrain(trainObj) {
-    	var trainFirstConverted = moment(trainObj.trainFirst, "HH:mm").subtract(1, "years");
+        //Time calculations
+        //Converting the time into military time on submit handler
+        var trainFirstConverted = moment(trainObj.trainFirst, "HH:mm").subtract(1, "years");
         console.log(moment(trainFirstConverted).format("HH:mm"));
+        //Calculating the current time
         var currentTime = moment();
         console.log("Current Time: " + moment(currentTime).format("HH:mm"));
-    	var differenceTime = moment().diff(moment(trainFirstConverted), "minutes");
+        //Difference between first train and current time
+        var differenceTime = moment().diff(moment(trainFirstConverted), "minutes");
         console.log("Difference in Time: " + differenceTime);
-    	var timeRemainder = differenceTime % trainObj.trainFrequency;
+        //Time apart (remainder)
+        var timeRemainder = differenceTime % trainObj.trainFrequency;
         console.log(timeRemainder);
-  		var minutesTrain = trainObj.trainFrequency - timeRemainder;
+        //Minutes away
+        var minutesTrain = trainObj.trainFrequency - timeRemainder;
         console.log("Minutes Until Train: " + minutesTrain);
         var nextTrain = moment().add(minutesTrain, "minutes");
         var nextTrainConverted = moment(nextTrain).format("HH:mm");
