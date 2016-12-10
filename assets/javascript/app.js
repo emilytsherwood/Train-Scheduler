@@ -64,6 +64,7 @@ $(document).ready(function() {
         //Minutes away
         var minutesTrain = trainObj.trainFrequency - timeRemainder;
         console.log("Minutes Until Train: " + minutesTrain);
+        //Calculating the next train
         var nextTrain = moment().add(minutesTrain, "minutes");
         var nextTrainConverted = moment(nextTrain).format("HH:mm");
         console.log("Arrival Time: " + moment(nextTrain).format("HH:mm"));
